@@ -40,7 +40,7 @@ public class ArticleRvAdapter extends RecyclerView.Adapter<ArticleRvAdapter.Arti
     private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2, 1, 1);
 
     private Cursor mCursor;
-    public static Context mContext;
+    private Context mContext;
 
     public ArticleRvAdapter(Cursor cursor, Context context) {
         mCursor = cursor;
@@ -65,14 +65,14 @@ public class ArticleRvAdapter extends RecyclerView.Adapter<ArticleRvAdapter.Arti
     }
 
     static class ArticleViewHolder extends RecyclerView.ViewHolder{
-        ImageView thumbnailView;
+        DynamicHeightNetworkImageView thumbnailView;
         TextView titleView;
         TextView subtitleView;
         TextView authorView;
 
         ArticleViewHolder(View view) {
             super(view);
-            thumbnailView = (ImageView) view.findViewById(R.id.article_image_item);
+            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.article_image_item);
             titleView = (TextView) view.findViewById(R.id.article_title);
             subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
             authorView = (TextView) view.findViewById(R.id.article_author);
@@ -103,7 +103,13 @@ public class ArticleRvAdapter extends RecyclerView.Adapter<ArticleRvAdapter.Arti
         holder.authorView.setText(mCursor.getString(ArticleLoader.Query.AUTHOR));
 
         if (holder.thumbnailView != null){
-            loadImage(mCursor.getString(ArticleLoader.Query.THUMB_URL), holder.thumbnailView, mContext);
+//            loadImage(mCursor.getString(ArticleLoader.Query.THUMB_URL), holder.thumbnailView, mContext);
+
+            holder.thumbnailView.setImageUrl(
+                    mCursor.getString(ArticleLoader.Query.THUMB_URL),
+                    ImageLoaderHelper.getInstance(mContext).getImageLoader());
+            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+
         }
     }
 
