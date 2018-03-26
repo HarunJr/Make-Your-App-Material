@@ -15,5 +15,6 @@
     <dimen name="detail_collapsingtoolbar_margin_end">64dp</dimen>
     <dimen name="app_bar_height">320dp</dimen>
     <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="app_bar_elevation">4dp</dimen>
 
 </resources>
