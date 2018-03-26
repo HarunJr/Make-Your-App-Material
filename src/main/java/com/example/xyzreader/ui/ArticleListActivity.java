@@ -9,6 +9,8 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -39,10 +41,13 @@ public class ArticleListActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
-//        final View toolbarContainerView = findViewById(R.id.frame_layout);
+        CoordinatorLayout coordinatorLayout = findViewById(R.id.article_coordinator);
 
         if (savedInstanceState == null) {
             refresh();
+            Snackbar snackbar = Snackbar
+                    .make(coordinatorLayout, "Welcome To XYZ reader", Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
         initViews();
         getLoaderManager().initLoader(0, null, this);

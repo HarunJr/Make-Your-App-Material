@@ -6,6 +6,7 @@
     android:layout_marginRight="4dp"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
+    app:elevation="@dimen/elevation"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?selectableItemBackground">
@@ -16,12 +17,13 @@
         android:orientation="vertical">
 
         <!--suppress AndroidLintContentDescription -->
-        <ImageView
+        <com.example.xyzreader.ui.DynamicHeightNetworkImageView
             android:id="@+id/article_image_item"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="0dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/article_image" />
+            android:contentDescription="@string/article_image"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/article_title"
